@@ -44,6 +44,26 @@ def get_group_from_db(chat_id):
             return data
 
 
+def store_in_db(chat_id, grp):
+    query = '''INSERT INTO USERS (id,grp)
+                VALUES (?,?)'''
+    try:
+        conn = sqlite3.connect('data.db')
+        check_exist = get_group_from_db(chat_id)
+        print(len(check_exist))
+        if (check_exist != -1 and len(check_exist) == 0):
+            conn.execute(query, [chat_id, grp])
+            conn.commit()
+            conn.close()
+            return True
+        else:
+            return False
+
+    except sqlite3.Error as error:
+        print('Error occurred - ', error)
+        return False
+
+
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     """Conversation entrypoint"""
@@ -98,6 +118,8 @@ async def echo(message: types.Message):
 async def echo(message: types.Message):
     await message.answer(message.chat.id)
     get_group_from_db(message.chat.id)
+    print(store_in_db(232323232, "A"))
+    await send_message()
 
 
 async def send_message():
