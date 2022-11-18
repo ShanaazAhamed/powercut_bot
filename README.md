@@ -2,7 +2,7 @@
 
  Power Cut Scheduler
 <p align='center'>
-![CEB LOGO](shorturl.at/oQUZ2)
+    <img src='shorturl.at/oQUZ2' alt="CEB Logo">
 </p>
  ## Token 
 
