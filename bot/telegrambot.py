@@ -2,7 +2,7 @@ from os import getenv
 from dotenv import load_dotenv
 import logging
 from aiogram import Bot, Dispatcher, executor, types
-import sqlite3
+from handlers.db_handler import get_group_from_db, get_all_id, store_in_db, update_db
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -21,47 +21,6 @@ dp = Dispatcher(bot, storage=storage)
 class Form(StatesGroup):
     name = State()
     group = State()
-
-
-def get_group_from_db(chat_id):
-    query = "SELECT id, grp FROM USERS WHERE id=?"
-    data = []
-    try:
-        conn = sqlite3.connect('data.db')
-        cursor = conn.execute(query, [chat_id])
-        for row in cursor:
-            data = list(row)
-
-    except sqlite3.Error as error:
-        print('Error occurred - ', error)
-        return -1
-
-    finally:
-        if conn:
-            conn.close()
-            print(data)
-            print('SQLite Connection closed')
-            return data
-
-
-def store_in_db(chat_id, grp):
-    query = '''INSERT INTO USERS (id,grp)
-                VALUES (?,?)'''
-    try:
-        conn = sqlite3.connect('data.db')
-        check_exist = get_group_from_db(chat_id)
-        print(len(check_exist))
-        if (check_exist != -1 and len(check_exist) == 0):
-            conn.execute(query, [chat_id, grp])
-            conn.commit()
-            conn.close()
-            return True
-        else:
-            return False
-
-    except sqlite3.Error as error:
-        print('Error occurred - ', error)
-        return False
 
 
 @dp.message_handler(commands=['start'])
@@ -118,7 +77,9 @@ async def echo(message: types.Message):
 async def echo(message: types.Message):
     await message.answer(message.chat.id)
     get_group_from_db(message.chat.id)
-    print(store_in_db(232323232, "A"))
+    # print(store_in_db(23232323223, "A"))
+    # print(update_db(message.chat.id, "W"))
+    print(get_all_id('W'))
     await send_message()
 
 
