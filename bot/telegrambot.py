@@ -76,7 +76,7 @@ async def echo(message: types.Message):
 @dp.message_handler()
 async def echo(message: types.Message):
     await message.answer(message.chat.id)
-    get_group_from_db(message.chat.id)
+    # get_group_from_db(message.chat.id)
     # print(store_in_db(23232323223, "A"))
     # print(update_db(message.chat.id, "W"))
     print(get_all_id('W'))
