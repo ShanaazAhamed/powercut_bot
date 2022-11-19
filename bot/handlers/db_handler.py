@@ -49,7 +49,7 @@ def store_in_db(chat_id, grp):
     try:
         conn = sqlite3.connect('data.db')
         check_exist = get_group_from_db(chat_id)
-        print(len(check_exist))
+        # print(len(check_exist))
         if (check_exist != -1 and len(check_exist) == 0):
             conn.execute(query, [chat_id, grp])
             conn.commit()
@@ -60,7 +60,7 @@ def store_in_db(chat_id, grp):
 
     except sqlite3.Error as error:
         # print('Error occurred - ', error)
-        return False
+        return -1
 
 
 def update_db(chat_id, grp):
@@ -79,4 +79,4 @@ def update_db(chat_id, grp):
 
     except sqlite3.Error as error:
         # print('Error occurred - ', error)
-        return False
+        return -1
