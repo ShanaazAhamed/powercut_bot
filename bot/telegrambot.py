@@ -19,41 +19,34 @@ dp = Dispatcher(bot, storage=storage)
 
 
 class Form(StatesGroup):
-    name = State()
     group = State()
+    edit_group = State()
 
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     """Conversation entrypoint"""
-    await Form.name.set()
-    await message.reply("Send me your name")
+    greenings = "Thank you for subscribing PowerCut Bot🙌😎\n"
+    prefix = greenings + \
+        "/help    : Get Help\n/group  : Add your Group \n/edit   : Edit your group📝\n/find : Find my group"
+    await message.reply(f"Hello, {message.chat.username}\n{prefix}")
 
 
 @dp.message_handler(commands=['help'])
 async def send_welcome(message: types.Message):
-    text = """
-    This handler will be called when user sends `/start` or `/help` command
-    `/group` to To enter the group
-    """
+    text = "This Bot sends the Power outage time in your area before an hour\nYou can add and edit the power cut group\n/group  : Add your Group \n/edit   : Edit your group📝\n/find : Find my group"
     await message.reply(text)
 
 
-@dp.message_handler(state='*', commands=['cancel'])
-async def cancel_handler(message: types.Message, state: FSMContext):
-    """Allow user to cancel action via /cancel command"""
+# @dp.message_handler(state='*', commands=['cancel'])
+# async def cancel_handler(message: types.Message, state: FSMContext):
+#     """Allow user to cancel action via /cancel command"""
 
-    current_state = await state.get_state()
-    if current_state is None:
-        return
-    await state.finish()
-    await message.reply('Cancelled.')
-
-
-@dp.message_handler(state=Form.name)
-async def process_name(message: types.Message, state: FSMContext):
-    await state.finish()
-    await message.reply(f"Hello, {message.text}")  # <-- Here we get the name
+#     current_state = await state.get_state()
+#     if current_state is None:
+#         return
+#     await state.finish()
+#     await message.reply('Cancelled.')
 
 
 @dp.message_handler(commands=['group'])
@@ -62,15 +55,70 @@ async def ask_group(message: types.message):
     await message.reply(f"Please enter the Group")
 
 
-@dp.message_handler(state=Form.group)
+@dp.message_handler(state=Form.group, regexp='^[A-Z]$')
 async def process_name(message: types.Message, state: FSMContext):
     await state.finish()
-    await message.reply(f"Your group is, {message.text}")
+    chat_id = message.chat.id
+    grp = message.text.strip().upper()
+    res = store_in_db(chat_id, grp)
+    if (res == True):
+        await message.reply(f"Your group is set as '{grp}' successfully")
+    elif (res == -1):
+        await message.reply(f"Your group is not set, Try again shortly")
+    else:
+        await message.reply(f"Your group already exists\n If you want to edit group try /edit")
 
 
-@dp.message_handler(regexp='^[A-Z]$')
-async def echo(message: types.Message):
-    await message.reply(message.text)
+@dp.message_handler(state=Form.group)
+async def echo(message: types.Message, state: FSMContext):
+    await state.finish()
+    await message.reply("We couldn't recognize your input \n Enter your group like this\n Ex: A")
+
+
+@dp.message_handler(commands=['edit'])
+async def ask_group(message: types.message):
+    chat_id = message.chat.id
+    await Form.edit_group.set()
+    res = get_group_from_db(chat_id)
+    if (res != -1 and len(res) > 0):
+        old_group = f"Your previous group is, {res[-1]}"
+        await message.reply(f"{old_group} \nPlease enter the new Group")
+    elif (res == -1):
+        await message.reply(f"An internal error occurs, Try again shortly")
+    else:
+        await message.reply(f"Your group is not stored\n If you want to add your group, try /group")
+
+
+@dp.message_handler(state=Form.edit_group, regexp='^[A-Z]$')
+async def process_name(message: types.Message, state: FSMContext):
+    await state.finish()
+    chat_id = message.chat.id
+    grp = message.text.strip().upper()
+    res = update_db(chat_id, grp)
+    if (res == True):
+        await message.reply(f"Your group is updated as '{grp}' successfully")
+    elif (res == -1):
+        await message.reply(f"Your group is not updated, Please try again shortly")
+    else:
+        await message.reply(f"Your group is not stored\n If you want to add your group, try /group")
+
+
+@dp.message_handler(state=Form.edit_group)
+async def echo(message: types.Message, state: FSMContext):
+    await state.finish()
+    await message.reply("We couldn't recognize your input \n Enter your group like this\n Ex: A")
+
+
+@dp.message_handler(commands=['find'])
+async def ask_group(message: types.message):
+    chat_id = message.chat.id
+    res = get_group_from_db(chat_id)
+    if (res != -1 and len(res) > 0):
+        await message.reply(f"Your group is, {res[-1]}")
+    elif (res == -1):
+        await message.reply(f"An internal error occurs, Try again shortly")
+    else:
+        await message.reply(f"Your group does not  exists, Please add group by /group")
 
 
 @dp.message_handler()
@@ -79,7 +127,7 @@ async def echo(message: types.Message):
     # get_group_from_db(message.chat.id)
     # print(store_in_db(23232323223, "A"))
     # print(update_db(message.chat.id, "W"))
-    print(get_all_id('W'))
+    # print(get_all_id('W'))
     await send_message()
 
 
