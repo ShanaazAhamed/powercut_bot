@@ -6,6 +6,7 @@ from handlers.db_handler import get_group_from_db, get_all_id, store_in_db, upda
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
+from handlers.json_handler import json_handler
 import asyncio
 
 load_dotenv()
@@ -35,13 +36,26 @@ async def start(message: types.Message):
 
 @dp.message_handler(commands=['help'])
 async def send_welcome(message: types.Message):
-    text = "This Bot sends the Power outage time in your area before an hour\nYou can add and edit the power cut group\n/group  : Add your Group \n/edit   : Edit your group📝\n/find : Find my group"
+    text = "This Bot sends the Power outage time in your area before an hour\nYou can add and edit the power cut group\n/group  : Add your Group \n/edit   : Edit your group📝\n/find : Find my group\n/time : To get your Power Cut time"
     await message.reply(text)
 
 
 @dp.message_handler(commands=['time'])
 async def send_welcome(message: types.Message):
-    await message.reply("hello")
+    json = json_handler()
+    chat_id = message.chat.id
+    res = get_group_from_db(chat_id)
+    if (res != -1 and len(res) > 0):
+        grp = res[-1]
+        time = json.get_time(grp)
+        if (time != -1):
+            await message.reply(f"Power outage in your area at {time}")
+        else:
+            await message.reply(f"Error occurs, couldn't get your time")
+    elif (res == -1):
+        await message.reply(f"An internal error occurs, Try again shortly")
+    else:
+        await message.reply(f"Your group is not stored\n If you want to add your group, try /group")
 
 
 # @dp.message_handler(state='*', commands=['cancel'])
