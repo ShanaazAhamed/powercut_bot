@@ -7,5 +7,5 @@
  In the root directory of the project create a new `.env` file and ad the blow code with your `TOKEN`
 
  ```.env
-    TOKEN = YOUR_TOKEN_OF_THE_BOT
+    TOKEN = TOKEN_OF_YOUR_THE_BOT
 ```
