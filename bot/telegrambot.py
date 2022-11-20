@@ -28,7 +28,8 @@ async def start(message: types.Message):
     """Conversation entrypoint"""
     greenings = "Thank you for subscribing PowerCut Bot🙌😎\n"
     prefix = greenings + \
-        "/help    : Get Help\n/group  : Add your Group \n/edit   : Edit your group📝\n/find : Find my group"
+        "/help    : Get Help\n"+"/group  : Add your Group \n"+"/edit   : Edit your group📝\n" + \
+        "/find : Find my group\n"+"/time : To get your Power Cut time"
     await message.reply(f"Hello, {message.chat.username}\n{prefix}")
 
 
@@ -36,6 +37,11 @@ async def start(message: types.Message):
 async def send_welcome(message: types.Message):
     text = "This Bot sends the Power outage time in your area before an hour\nYou can add and edit the power cut group\n/group  : Add your Group \n/edit   : Edit your group📝\n/find : Find my group"
     await message.reply(text)
+
+
+@dp.message_handler(commands=['time'])
+async def send_welcome(message: types.Message):
+    await message.reply("hello")
 
 
 # @dp.message_handler(state='*', commands=['cancel'])
