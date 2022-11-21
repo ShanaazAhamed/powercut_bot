@@ -9,17 +9,32 @@ def get_group_from_db(chat_id):
         cursor = conn.execute(query, [chat_id])
         for row in cursor:
             data = list(row)
+        conn.close()
+        return data
 
     except sqlite3.Error as error:
         # print('Error occurred - ', error)
         return -1
 
-    finally:
-        if conn:
-            conn.close()
-            # print(data)
-            # print('SQLite Connection closed')
-            return data
+
+def create_table():
+    query = '''CREATE TABLE USERS (
+	                id INT PRIMARY KEY NOT NULL,
+	                grp TEXT NOT NULL
+                    );'''
+    drop_query = "DROP TABLE IF EXISTS USERS;"
+    try:
+        conn = sqlite3.connect('data.db')
+        cursor = conn.cursor()
+        cursor.execute(drop_query)
+        conn.execute(query)
+        conn.commit()
+        conn.close()
+        return True
+
+    except sqlite3.Error as error:
+        # print('Error occurred - ', error)
+        return -1
 
 
 def get_all_id(grp):
@@ -27,20 +42,34 @@ def get_all_id(grp):
     data = []
     try:
         conn = sqlite3.connect('data.db')
+        grp = grp.upper()
         cursor = conn.execute(query, [grp])
         for row in cursor:
             data.append(list(row)[0])
+        conn.close()
+        return data
 
     except sqlite3.Error as error:
         # print('Error occurred - ', error)
         return -1
 
-    finally:
-        if conn:
-            conn.close()
-            # print(data)
-            # print('SQLite Connection closed')
-            return data
+
+def get_list_of_id(grp_list):
+    grp_list = list(map(str, grp_list))
+    qst = '?,'*len(grp_list)
+    query = f"SELECT id FROM USERS WHERE grp in ({qst[:-1]})"
+    id_list = []
+    try:
+        conn = sqlite3.connect('data.db')
+        cursor = conn.execute(query, [*grp_list])
+        for row in cursor:
+            id_list.append(list(row)[0])
+        conn.close()
+        return id_list
+
+    except sqlite3.Error as error:
+        # print('Error occurred - ', error)
+        return -1
 
 
 def store_in_db(chat_id, grp):
