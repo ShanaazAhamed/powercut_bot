@@ -1,4 +1,4 @@
-# powercut_bot
+# powercut_bot ⚡
 
  Power Cut Scheduler
 
