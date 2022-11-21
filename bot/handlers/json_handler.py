@@ -1,6 +1,4 @@
 import json
-from db_handler import get_list_of_id
-
 
 class json_handler():
 
@@ -61,4 +59,5 @@ class json_handler():
 if __name__ == '__main__':
     obj = json_handler()
     # print(obj.get_groups_by_time('3:00PM'))
+    from db_handler import get_list_of_id
     print(get_list_of_id(obj.get_groups_by_time('3:00PM')))
