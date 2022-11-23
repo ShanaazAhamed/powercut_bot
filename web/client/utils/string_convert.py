@@ -1,4 +1,5 @@
 def get(text):
+    global town
     areas = text.split(",")
     res = ""
     for i in areas:
@@ -12,10 +13,24 @@ def get(text):
                     if j != '\n':
                         f_r += j
                 if f_r != "":
-                    res += f'"{str(f_r).strip()}",'
-    print(res)
+                    striped = str(f_r).strip()
+                    town = town.strip()
+                    if striped != town:
+                        res += f'"{striped} - {town}",'
+                    else:
+                        res += f'"{striped}",'
+    # print(res)
     with open("./test.txt", 'w') as f:
         f.write(res)
 
 
-get('''Maskeliya Town , Norwood , Bogawanthalawa , Brunswick , Sripada''')
+town = "Seethawaka"
+get('''    
+
+
+ Aluthambalama,miriswatta,Beragala,Higurala,Eswatta,Puwakwatta,Elstonestate, 
+Ukwatta,Ilukovita,manikkawatta,Kudagama
+
+
+
+''')
