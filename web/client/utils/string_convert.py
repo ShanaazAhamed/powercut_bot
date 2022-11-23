@@ -18,5 +18,4 @@ def get(text):
         f.write(res)
 
 
-get(''' Weligopolatown,Kongasthanna,Yatipasgamuwa,Kottibulwala,Magayaya,Galpaya,Thaligama
-yaya,Karawilayaya  ''')
+get('''Maskeliya Town , Norwood , Bogawanthalawa , Brunswick , Sripada''')
