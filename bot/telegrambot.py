@@ -2,11 +2,11 @@ from os import getenv
 from dotenv import load_dotenv
 import logging
 from aiogram import Bot, Dispatcher, executor, types
-from handlers.db_handler import get_group_from_db, get_all_id, store_in_db, update_db
+from bot.handlers.db_handler import get_group_from_db, get_all_id, store_in_db, update_db
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from handlers.json_handler import json_handler
+from bot.handlers.json_handler import json_handler
 
 load_dotenv()
 
