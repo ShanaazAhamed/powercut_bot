@@ -1,10 +1,8 @@
-import threading
 import schedule
 from tools import webscrap as ws
 from bot import telegrambot as tel
-
-# def job():
-#     print("I'm running on thread %s" % threading.current_thread())
+import threading
+import multiprocessing
 
 
 def web_scrap():
@@ -17,31 +15,23 @@ def web_scrap():
         pass
 
 
-def telegram():
-    tel.executor.start(tel.dp, tel.send_message())
-    tel.executor.start_polling(tel.dp, skip_updates=True)
-
-
 def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
     job_thread.start()
 
 
-def main_thread():
-    schedule.every()
-    schedule.every()
-
-# schedule.every(2).seconds.do(run_threaded, job)
-# schedule.every().day.at("04:30").do(run_threaded, web_scrap)
+def web_scrap_process():
+    schedule.every().day.at("22:48").do(run_threaded, web_scrap)
+    while 1:
+        schedule.run_pending()
 
 
-schedule.every().day.at("15:23").do(run_threaded, web_scrap)
+def telegram_process():
+    tel.executor.start_polling(tel.dp, skip_updates=True)
 
-while 1:
 
-    # schedule.every()
-    t = threading.Thread(target=main_thread)
-    t.start()
-
-    # time.sleep(1)
-    # print("hello")
+if __name__ == "__main__":
+    p1 = multiprocessing.Process(target=web_scrap_process)
+    p2 = multiprocessing.Process(target=telegram_process)
+    p1.start()
+    p2.start()
