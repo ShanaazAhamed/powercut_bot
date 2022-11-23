@@ -18,6 +18,5 @@ def get(text):
         f.write(res)
 
 
-get('''Mamangam, Thiraimadu, Kallady, Manjanthoduwai
-
- ''')
+get(''' Weligopolatown,Kongasthanna,Yatipasgamuwa,Kottibulwala,Magayaya,Galpaya,Thaligama
+yaya,Karawilayaya  ''')
