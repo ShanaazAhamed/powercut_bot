@@ -1,58 +1,47 @@
-# Schedule Library imported
+import threading
 import schedule
-import time
+from tools import webscrap as ws
+from bot import telegrambot as tel
 
-# Functions setup
-
-
-def sudo_placement():
-    print("Get ready for Sudo Placement at Geeksforgeeks")
+# def job():
+#     print("I'm running on thread %s" % threading.current_thread())
 
 
-def good_luck():
-    print("Good Luck for Test")
+def web_scrap():
+    url = "https://cebcare.ceb.lk/Incognito/DemandMgmtSchedule"
+    web_scrap = ws.WebScrap(url)
+    try:
+        data = web_scrap.get_soup('span', 'fw-500')
+        web_scrap.json_export(data)
+    except:
+        pass
 
 
-def work():
-    print("Study and work hard")
+def telegram():
+    tel.executor.start(tel.dp, tel.send_message())
+    tel.executor.start_polling(tel.dp, skip_updates=True)
 
 
-def bedtime():
-    print("It is bed time go rest")
+def run_threaded(job_func):
+    job_thread = threading.Thread(target=job_func)
+    job_thread.start()
 
 
-def geeks():
-    print("Shaurya says Geeksforgeeks")
+def main_thread():
+    schedule.every()
+    schedule.every()
+
+# schedule.every(2).seconds.do(run_threaded, job)
+# schedule.every().day.at("04:30").do(run_threaded, web_scrap)
 
 
-# Task scheduling
-# After every 10mins geeks() is called.
-schedule.every(10).minutes.do(geeks)
+schedule.every().day.at("15:23").do(run_threaded, web_scrap)
 
-# After every hour geeks() is called.
-schedule.every().hour.do(geeks)
+while 1:
 
-# Every day at 12am or 00:00 time bedtime() is called.
-schedule.every().day.at("00:00").do(bedtime)
+    # schedule.every()
+    t = threading.Thread(target=main_thread)
+    t.start()
 
-# After every 5 to 10mins in between run work()
-schedule.every(5).to(10).minutes.do(work)
-
-# Every monday good_luck() is called
-schedule.every().monday.do(good_luck)
-
-# Every tuesday at 18:00 sudo_placement() is called
-schedule.every().tuesday.at("18:00").do(sudo_placement)
-
-# Loop so that the scheduling task
-# keeps on running all time.
-
-
-if __name__ == "__main__":
-    while True:
-
-        # Checks whether a scheduled task
-        # is pending to run or not
-        schedule.run_pending()
-        time.sleep(1)
-        print("hello")
+    # time.sleep(1)
+    # print("hello")
