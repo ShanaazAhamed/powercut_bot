@@ -10,7 +10,12 @@ export default function FreeSolo() {
       freeSolo
       options={top100Films.map((option) => option.title)}
       renderInput={(params) => (
-        <TextField {...params} label="freeSolo" fullWidth />
+        <TextField
+          {...params}
+          label="Enter your Area"
+          fullWidth={true}
+          sx={{ color: pink }}
+        />
       )}
     />
   );
