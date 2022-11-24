@@ -1,6 +1,7 @@
 import schedule
 from tools import webscrap as ws
 from bot import telegrambot as tel
+from controller.json_controller import get_interrupt_times
 import threading
 import multiprocessing
 
@@ -21,9 +22,11 @@ def run_threaded(job_func):
 
 
 def web_scrap_process():
-    schedule.every().day.at("22:48").do(run_threaded, web_scrap)
+    schedule.every().day.at("04:30").do(run_threaded, web_scrap)
+
     while 1:
         schedule.run_pending()
+        times = get_interrupt_times()
 
 
 def telegram_process():
