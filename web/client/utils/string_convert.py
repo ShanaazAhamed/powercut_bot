@@ -24,13 +24,9 @@ def get(text):
         f.write(res)
 
 
-town = "Seethawaka"
-get('''    
+town = "Polonnaruwa"
+get('''  
 
-
- Aluthambalama,miriswatta,Beragala,Higurala,Eswatta,Puwakwatta,Elstonestate, 
-Ukwatta,Ilukovita,manikkawatta,Kudagama
-
-
+ Unagalawehera, Somawathiya
 
 ''')
