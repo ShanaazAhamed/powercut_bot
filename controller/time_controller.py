@@ -44,4 +44,5 @@ def before_an_hour(time):
 if __name__ == "__main__":
     now = get_now()
     sub = before_an_hour('12:01AM')
-    print(sub)
+    to_twenty_four('12:01AM')
+    # print(sub)
