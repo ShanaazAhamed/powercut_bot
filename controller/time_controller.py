@@ -38,11 +38,11 @@ def before_an_hour(time):
             p = "AM"
     new_time = f"{str(hour)}:{str(minute)}{p}"
 
-    return to_twenty_four(new_time)
+    return new_time
 
 
 if __name__ == "__main__":
     now = get_now()
     sub = before_an_hour('12:01AM')
-    to_twenty_four('12:01AM')
+    print(before_an_hour('6:00PM'))
     # print(sub)
