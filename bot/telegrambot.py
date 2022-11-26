@@ -147,11 +147,12 @@ async def echo(message: types.Message):
     # print(store_in_db(23232323223, "A"))
     # print(update_db(message.chat.id, "W"))
     # print(get_all_id('W'))
-    await send_message()
+    # await send_message()
 
 
-async def send_message():
-    await bot.send_message(705621896, "message")
+def send_message(chat_id):
+    bot.send_message(chat_id, "message")
+    return None
 
 
 if __name__ == '__main__':
