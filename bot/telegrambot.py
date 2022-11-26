@@ -150,9 +150,8 @@ async def echo(message: types.Message):
     # await send_message()
 
 
-def send_message(chat_id):
-    bot.send_message(chat_id, "message")
-    return None
+async def send_message(chat_id):
+    await bot.send_message(chat_id, "message")
 
 
 if __name__ == '__main__':
