@@ -8,19 +8,7 @@ import threading
 import multiprocessing
 from datetime import datetime
 import time
-
-from aiogram import Bot
-from dotenv import load_dotenv
-from os import getenv
-import logging
-
-
-def send_message(chat_id):
-    load_dotenv()
-    API_TOKEN = getenv("TOKEN")
-    logging.basicConfig(level=logging.INFO)
-    bot = Bot(token=API_TOKEN)
-    bot.send_message(chat_id, "Message")
+import asyncio
 
 
 available_times = []
@@ -30,7 +18,6 @@ def get_interrupt():
     global available_times
     interrupt_times = get_interrupt_times()
     available_times = interrupt_times
-    # print(available_times)
 
 
 def web_scrap():
@@ -52,7 +39,7 @@ def web_scrap_process():
     global available_times
 
     schedule.every().day.at("04:30").do(run_threaded, web_scrap)
-    schedule.every().day.at("01:22").do(run_threaded, get_interrupt)
+    schedule.every().day.at("02:28").do(run_threaded, get_interrupt)
 
     while 1:
         schedule.run_pending()
@@ -64,8 +51,15 @@ def web_scrap_process():
                 if i_std == now:
                     groups = get_groups_by_time(i)
                     chat_ids = get_list_of_id(groups)
+                    loop = asyncio.get_event_loop()
                     for i in chat_ids:
-                        send_message(int(i))
+                        """ TODO : Try to solve asyncio """
+                        try:
+                            a1 = loop.create_task(tel.send_message(int(i)))
+                            loop.run_until_complete(a1)
+                        except:
+                            continue
+                    loop.close()
                     time.sleep(60)
 
 
@@ -74,7 +68,6 @@ def telegram_process():
 
 
 if __name__ == "__main__":
-    # tel.bot.send_message(705621896, "Hello")
     p1 = multiprocessing.Process(target=web_scrap_process)
     p2 = multiprocessing.Process(target=telegram_process)
     p1.start()
