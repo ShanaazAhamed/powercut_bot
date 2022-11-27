@@ -39,7 +39,7 @@ def web_scrap_process():
     global available_times
 
     schedule.every().day.at("04:30").do(run_threaded, web_scrap)
-    schedule.every().day.at("02:28").do(run_threaded, get_interrupt)
+    schedule.every().day.at("14:27").do(run_threaded, get_interrupt)
 
     while 1:
         schedule.run_pending()
@@ -51,15 +51,19 @@ def web_scrap_process():
                 if i_std == now:
                     groups = get_groups_by_time(i)
                     chat_ids = get_list_of_id(groups)
-                    loop = asyncio.get_event_loop()
+                    # loop = asyncio.get_event_loop()
                     for i in chat_ids:
                         """ TODO : Try to solve asyncio """
-                        try:
-                            a1 = loop.create_task(tel.send_message(int(i)))
-                            loop.run_until_complete(a1)
-                        except:
-                            continue
-                    loop.close()
+                        # try:
+                        #     a1 = loop.create_task(tel.send_message(int(i)))
+                        #     loop.run_until_complete(a1)
+                        # except:
+                        #     continue
+                        print(i)
+                        loop = asyncio.get_event_loop()
+                        a1 = loop.create_task(tel.send_message(int(i)))
+                        loop.run_until_complete(a1)
+                        loop.close()
                     time.sleep(60)
 
 
