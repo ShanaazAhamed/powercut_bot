@@ -109,3 +109,7 @@ def update_db(chat_id, grp):
     except sqlite3.Error as error:
         # print('Error occurred - ', error)
         return -1
+
+
+if __name__ == "__main__":
+    create_table()
