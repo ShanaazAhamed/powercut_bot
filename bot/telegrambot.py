@@ -7,6 +7,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from bot.handlers.json_handler import json_handler
+import asyncio
 
 load_dotenv()
 
@@ -150,8 +151,10 @@ async def echo(message: types.Message):
     # await send_message()
 
 
-async def send_message(chat_id):
-    await bot.send_message(chat_id, "message")
+async def send_message(chat_id, msg):
+    s = f"Power interrupt would be occurred in your area in an hour,\nTime : {msg}"
+    await bot.send_message(chat_id, s)
+    # await asyncio.sleep(6)
 
 
 if __name__ == '__main__':
