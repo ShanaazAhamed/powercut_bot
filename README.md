@@ -2,6 +2,10 @@
 
  Power Cut Scheduler
 
+ This is telegram bot which developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
+
+ 
+
  ## Token 
 
  In the root directory of the project 
@@ -12,9 +16,15 @@
     TOKEN = TOKEN_OF_YOUR_THE_BOT
 ```
 
+## Install required python packages
+
+```bash
+pip install -r requirements.txt
+```
 
 
-***
+
+*****
 
 ### To run virtual environment on VSCode
 
@@ -31,11 +41,11 @@ python -m venv .venv
 
 ### On VSCode
 
-```bash
 1. `ctrl` + `shift` + `p` and select Python Interpreter
 2. Select the `enter interpreter path`
 3. Browse and select `.venv/Scripts/python.exe`
-```
+
+
 If you want to manually specify a default interpreter that will be used once you first open your workspace, you can create or modify an entry for `python.defaultInterpreterPath` setting in your workspace `settings.json` with the full path to the Python executable. 
 
 In `settings.json`
