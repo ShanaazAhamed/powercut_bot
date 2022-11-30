@@ -1,8 +1,11 @@
 # powercut_bot ⚡
 
- Power Cut Scheduler
+ <p align="center">
+ <img src="images/logo2.png" width="40%">
+ </p>
 
- This is a telegram bot which developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
+ 
+ Power Cut Scheduler. This is a telegram bot which developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
 
  ## Bot link
 
