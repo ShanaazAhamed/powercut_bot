@@ -4,7 +4,9 @@
 
  This is telegram bot which developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
 
- 
+ ## Bot link
+
+ <a href="https://PowerCut_NotifierBot.t.me/">@PowerCut_NotifierBot</a>
 
  ## Token 
 
