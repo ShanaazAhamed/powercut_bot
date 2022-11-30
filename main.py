@@ -40,7 +40,7 @@ def web_scrap_process():
     global available_times
 
     schedule.every().day.at("04:30").do(run_threaded, web_scrap)
-    schedule.every().day.at("02:17").do(run_threaded, get_interrupt)
+    schedule.every().day.at("05:00").do(run_threaded, get_interrupt)
     loop = asyncio.get_event_loop()
 
     while 1:
