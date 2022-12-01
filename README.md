@@ -64,8 +64,8 @@ In `settings.json`
 
 ## Scan to chat with PowerCutBot 
 <br/>
-
-<img src = "./images/frame.png" width = "100px" />
-
+<a href="https://powercut_notifierbot.t.me/">
+  <img src = "./images/frame.png" width = "100px" />
+</a>
 
 ## Enjoy 🥳🥳
