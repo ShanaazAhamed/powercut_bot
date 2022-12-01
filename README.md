@@ -62,4 +62,10 @@ In `settings.json`
 
 ```
 
+## Scan to chat with PowerCutBot 
+<br/>
 
+<img src = "./images/frame.png" width = "100px" />
+
+
+## Enjoy 🥳🥳
