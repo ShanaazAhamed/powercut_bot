@@ -24,9 +24,10 @@ def get(text):
         f.write(res)
 
 
-town = "Polonnaruwa"
+town = "Ukuwela"
 get('''  
 
- Unagalawehera, Somawathiya
+Kandy City ,Nugawela,
+
 
 ''')
