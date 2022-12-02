@@ -68,4 +68,4 @@ In `settings.json`
   <img src = "./images/frame.png" width = "100px" />
 </a>
 
-## Enjoy 🥳🥳
+## Made ❤ with Python <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" width="25"> & ReactJS <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" width="25">
