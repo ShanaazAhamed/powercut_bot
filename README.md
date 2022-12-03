@@ -4,12 +4,14 @@
  <img src="images/logo2.png" width="40%">
  </p>
 
- 
- Power Cut Scheduler. This is a telegram bot which developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
+ *[@PowerCut_NotifierBot](https://PowerCut_NotifierBot.t.me/)* . This is a telegram bot which developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
 
- ## Bot link
+## Why?
 
- <a href="https://PowerCut_NotifierBot.t.me/">@PowerCut_NotifierBot</a>
+The Ceylon Electricity Board *[CEB](https://ceb.lk)* , the largest electricity company in Sri Lanka. Usually minimum `1-2` hour power cut heald in all 7 days in a week at different times due to the lack of sufficient fuel and water to generate electricity.
+
+> *Since having independence from British domination in 1948, Sri Lanka is presently going through its worst economic crisis. The decline is attributed to dollar shortages brought on by the COVID-19 travel ban. Due to the country's inability to obtain enough fuel, there is a severe scarcity of food and other necessities like gas and heating oil.*
+
 
  ## Token 
 
@@ -62,6 +64,11 @@ In `settings.json`
 
 ```
 
+
+ ## Bot link
+
+ <a href="https://PowerCut_NotifierBot.t.me/">@PowerCut_NotifierBot</a>
+
 ## Scan to chat with PowerCutBot 
 <br/>
 <a href="https://powercut_notifierbot.t.me/">
@@ -69,5 +76,4 @@ In `settings.json`
 </a>
 
 ### Made ❤ with 
- - Python <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" width="25"> 
- - ReactJS <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" width="25">
+> <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" width="25"> <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" width="25">
