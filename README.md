@@ -8,7 +8,7 @@
 
 ## Why?
 
-The Ceylon Electricity Board *[CEB](https://ceb.lk)* , the largest electricity company in Sri Lanka. Usually minimum `1-2` hour power cut heald in all 7 days in a week at different times due to the lack of sufficient fuel and water to generate electricity.
+The Ceylon Electricity Board *[CEB](https://ceb.lk)* , the largest electricity company in Sri Lanka <img src="https://user-images.githubusercontent.com/77115237/205598159-fb547aeb-dd52-4a15-9bb7-031e446a2d95.png" alt="LK" width="25px"/>. Usually minimum `1-2` hour power cut heald in all 7 days in a week at different times due to the lack of sufficient fuel and water to generate electricity.
 
 > *Since having independence from British domination in 1948, Sri Lanka is presently going through its worst economic crisis. The decline is attributed to dollar shortages brought on by the COVID-19 travel ban. Due to the country's inability to obtain enough fuel, there is a severe scarcity of food and other necessities like gas and heating oil.*
 
