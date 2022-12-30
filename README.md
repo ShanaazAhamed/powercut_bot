@@ -4,7 +4,7 @@
  <img src="images/logo2.png" width="40%">
  </p>
 
- *[@PowerCut_NotifierBot](https://PowerCut_NotifierBot.t.me/)* . This is a telegram bot which is developed in `python` language. The purpose of the bot is helps to send notification of the power interrupt time before an hour via `telegram`. 
+ *[@PowerCut_NotifierBot](https://PowerCut_NotifierBot.t.me/)* . This is a telegram bot which is developed in `python` language. The purpose of the bot is, helps to send notification of the power interrupt time before an hour via `telegram`. 
 
 ## Why?
 
